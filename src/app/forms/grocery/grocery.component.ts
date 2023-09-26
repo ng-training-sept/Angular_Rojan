@@ -4,30 +4,30 @@ import { Card } from 'src/app/components/card/card.model';
 import { CardComponent } from "../../components/card/card.component";
 
 @Component({
-    selector: 'app-sports',
+    selector: 'app-grocery',
     standalone: true,
-    templateUrl: './sports.component.html',
-    styleUrls: ['./sports.component.scss'],
+    templateUrl: './grocery.component.html',
+    styleUrls: ['./grocery.component.scss'],
     imports: [CommonModule, CardComponent]
 })
-export class SportsComponent implements OnInit {
-  sportCards: Card[] = [];
+export class GroceryComponent implements OnInit {
+  groceryCards: Card[] = [];
 
   ngOnInit(): void {
-      this.sportCards = [
+      this.groceryCards = [
           {
-              id: '1',
-              name: 'Football',
-              price: 1500,
+              id: '3',
+              name: 'Apple',
+              price: 120,
               imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Football_Pallo_valmiina-cropped.jpg',
-              description: 'Football description'
+              description: 'Apple description'
           },
           {
-              id: '2',
-              name: 'Football Boot',
-              price: 6000,
+              id: '4',
+              name: 'Banana',
+              price: 150,
               imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/AdidasEtruscoBoot.jpg/230px-AdidasEtruscoBoot.jpg',
-              description: 'Football description'
+              description: 'Banana description'
           }
       ];
   }

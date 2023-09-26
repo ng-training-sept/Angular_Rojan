@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReversePipe } from "../../pipes/reverse.pipe";
 import { ImpureDemoPipe } from "../../pipes/impure-demo.pipe";
 import { Card } from './card.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-card',
@@ -58,4 +59,14 @@ export class CardComponent {
   //   this.server.status = this.server.status === 'offline' ? 'online' : 'offline';
   // }
   @Input() cards: Card[] = [];
+
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+
+  
+  // ['mypage', 'child'] /mypage/child
+  goToItemDetails(data: Card): void {
+    // this.router.navigateByUrl(`/sports/card-item/${data.id}`, {state: {data}});
+    this.router.navigate(['card-item', data.id], {state: {data}, relativeTo: this.route}).then();
+  }
 }
