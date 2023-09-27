@@ -4,6 +4,7 @@ import { Routes, provideRouter } from '@angular/router';
 import { GroceryComponent } from './forms/grocery/grocery.component';
 import { CardItemComponent } from './components/card/card-item/card-item.component';
 import { NotfoundComponent } from './forms/notfound/notfound.component';
+import { authGuard } from './auth/auth.constants';
 
 
 export const routes: Routes = [
@@ -20,7 +21,9 @@ export const routes: Routes = [
 
   { path: 'sports/card-item/:id', component: CardItemComponent},
 
-  {path: 'grocery', loadChildren: () => import('./forms/grocery/grocery.routes').then(m => m.routes)},
+  {path: 'grocery', 
+  canActivate: [authGuard],
+  loadChildren: () => import('./forms/grocery/grocery.routes').then(m => m.routes)},
 
   {path: 'notfound', component: NotfoundComponent}, 
 

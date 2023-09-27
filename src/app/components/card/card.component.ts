@@ -9,13 +9,15 @@ import { ReversePipe } from "../../pipes/reverse.pipe";
 import { ImpureDemoPipe } from "../../pipes/impure-demo.pipe";
 import { Card } from './card.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { ItemSaveUpdateComponent } from '../item-save-update/item-save-update.component';
 
 @Component({
     selector: 'app-card',
     standalone: true,
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.scss'],
-    imports: [CommonModule, MatCardModule, FormsModule, SpecialDirective, MatInputModule, ReversePipe, ImpureDemoPipe]
+    imports: [CommonModule, MatCardModule, FormsModule, SpecialDirective, MatInputModule, ReversePipe, ImpureDemoPipe,MatDialogModule]
 })
 export class CardComponent {
   // title: string = 'Data Binding';
@@ -62,11 +64,22 @@ export class CardComponent {
 
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-
+  private readonly dialog = inject(MatDialog);
   
   // ['mypage', 'child'] /mypage/child
   goToItemDetails(data: Card): void {
     // this.router.navigateByUrl(`/sports/card-item/${data.id}`, {state: {data}});
     this.router.navigate(['card-item', data.id], {state: {data}, relativeTo: this.route}).then();
+  }
+
+  openItemDialog(data: Card): void {
+    const dialogRef = this.dialog.open(ItemSaveUpdateComponent, {
+      data // initial data to dialog (remember dialogData in ItemSaveUpdateComponent)
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.data) {
+        // emit update event and call service from parent to update card
+      }
+    });
   }
 }
