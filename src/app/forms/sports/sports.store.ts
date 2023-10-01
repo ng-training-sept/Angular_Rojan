@@ -30,4 +30,29 @@ export class SportsStore {
       this.state.mutate(state => state.sports.push(res));
     });
   }
+
+  updateSport(id:string,sport: Card): void {
+    this.httpClient.put<Card>(`http://localhost:3000/sports/${id}`, sport).subscribe(
+      () => {
+        console.log('successful');
+      },
+      (error) => {
+        console.error('Error updating sport:', error);
+        // Handle error here, if needed
+      }
+    );
+  }
+
+  removeSport(id: string): void {
+    console.log(id);
+    this.httpClient.delete<Card>(`http://localhost:3000/sports/${id}`).subscribe(
+      () => {
+        console.log('successful');
+      },
+      (error) => {
+        console.error('Error deleting sport:', error);
+        // Handle error here, if needed
+      }
+    );
+  }
 }

@@ -18,15 +18,15 @@ export class SportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sportsStore.fetchSports();
-    setTimeout(() => {
-      this.sportsStore.saveSport({
-        id: 'test 2',
-        name: 'Test 2',
-        description: 'test 2',
-        price: 603.55,
-        imageUrl: ''
-      });
-    }, 5000)
+    // setTimeout(() => {
+    //   this.sportsStore.saveSport({
+    //     id: 'test 2',
+    //     name: 'Test 2',
+    //     description: 'test 2',
+    //     price: 603.55,
+    //     imageUrl: ''
+    //   });
+    // }, 5000)
 //   ngOnInit(): void {
 //       this.sportCards = [
 //           {

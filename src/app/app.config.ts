@@ -1,10 +1,12 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, NgModule } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { Routes, provideRouter } from '@angular/router';
 import { GroceryComponent } from './forms/grocery/grocery.component';
 import { CardItemComponent } from './components/card/card-item/card-item.component';
 import { NotfoundComponent } from './forms/notfound/notfound.component';
 import { authGuard } from './auth/auth.constants';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SportsStore } from './forms/sports/sports.store';
 
 
 export const routes: Routes = [
@@ -30,6 +32,11 @@ export const routes: Routes = [
   {path: '**', component: NotfoundComponent}, 
 ];
 
+
+
 export const appConfig: ApplicationConfig = {
+  
+  
   providers: [provideAnimations(),provideRouter(routes)]
+
 };
