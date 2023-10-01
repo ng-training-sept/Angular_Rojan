@@ -53,15 +53,8 @@ export class ItemSaveUpdateComponent{
       return;
     }
     this.sportsStore.updateSport(this.dialogData.id,this.itemForm.value);
-    this.dialogRef.close({ data: this.itemForm.value });
-
-    
-    
+    this.dialogRef.close({ data: this.itemForm.value }); 
   }
-
- 
-
-
 
   initItemForm(): void {
     this.itemForm = new FormGroup({
